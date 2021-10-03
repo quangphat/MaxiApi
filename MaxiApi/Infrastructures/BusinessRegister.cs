@@ -13,6 +13,7 @@ namespace MaxiApi.Infrastructures
         public static void RegisterBusiness(this IServiceCollection service)
         {
             service.AddScoped<ITeamBusiness, TeamBusiness>();
+            service.AddScoped<IEmployeeBusiness, EmployeeBusiness>();
         }
     }
 }

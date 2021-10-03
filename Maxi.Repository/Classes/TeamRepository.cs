@@ -20,9 +20,35 @@ namespace Maxi.Repository.Classes
             return (await ExecQuery<USPTeam>("spGetTeams", new { freeText, page, limit }))?.ToList();
         }
 
+        public async Task<Team> GetTeamByIdAsync(int id)
+        {
+            return await _context.Teams.Where(p => p.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<USPTeam> GetByIdAsync(int id)
         {
             return (await ExecQuery<USPTeam>("spGetTeamById", new { id}))?.FirstOrDefault();
+        }
+
+        public async Task UpdateAsync(Team team)
+        {
+            team.UpdatedAt = DateTime.UtcNow;
+            _context.Teams.Update(team);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task CreateAsync(Team team)
+        {
+            team.CreatedAt = DateTime.UtcNow;
+            _context.Teams.Add(team);
+            await _context.SaveChangesAsync();
+        }
+        public async Task DeleteAsync(Team team)
+        {
+            team.UpdatedAt = DateTime.UtcNow;
+            team.IsDeleted = true;
+            _context.Teams.Update(team);
+            await _context.SaveChangesAsync();
         }
     }
 }

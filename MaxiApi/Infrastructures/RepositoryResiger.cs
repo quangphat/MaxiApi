@@ -13,6 +13,7 @@ namespace MaxiApi.Infrastructures
         public static void RegisterRepository(this IServiceCollection service)
         {
             service.AddScoped<ITeamRepository, TeamRepository>();
+            service.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
     }
 }

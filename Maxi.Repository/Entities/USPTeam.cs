@@ -11,6 +11,6 @@ namespace Maxi.Repository.Entities
         public string LeaderName { get; set; }
         public int LeaderId { get; set; }
         public string ParentName { get; set; }
-        public int ParentId { get; set; }
+        public int ParentTeamId { get; set; }
     }
 }

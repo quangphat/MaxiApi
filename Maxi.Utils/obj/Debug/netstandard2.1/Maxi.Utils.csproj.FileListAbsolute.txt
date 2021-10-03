@@ -1,0 +1,9 @@
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\bin\Debug\netstandard2.1\Maxi.Utils.deps.json
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\bin\Debug\netstandard2.1\Maxi.Utils.dll
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\bin\Debug\netstandard2.1\Maxi.Utils.pdb
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\obj\Debug\netstandard2.1\Maxi.Utils.GeneratedMSBuildEditorConfig.editorconfig
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\obj\Debug\netstandard2.1\Maxi.Utils.AssemblyInfoInputs.cache
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\obj\Debug\netstandard2.1\Maxi.Utils.AssemblyInfo.cs
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\obj\Debug\netstandard2.1\Maxi.Utils.csproj.CoreCompileInputs.cache
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\obj\Debug\netstandard2.1\Maxi.Utils.dll
+D:\Development\MaxiCorp\MaxiApi\Maxi.Utils\obj\Debug\netstandard2.1\Maxi.Utils.pdb

@@ -8,10 +8,8 @@ namespace Maxi.Repository
 {
     public partial class MaxiCorpContext : DbContext
     {
-        protected readonly string _connectionString;
-        public MaxiCorpContext(string connectionString):base()
+        public MaxiCorpContext()
         {
-
         }
 
         public MaxiCorpContext(DbContextOptions<MaxiCorpContext> options)
@@ -20,16 +18,17 @@ namespace Maxi.Repository
         }
 
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Level> Levels { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        //optionsBuilder.UseSqlServer("Server=QUANGPHAT\\CLARKKENT;Initial Catalog=MaxiCorp;Persist Security Info=False;User ID=sa;Password=number8;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;");
-        //        optionsBuilder.UseSqlServer(_connectionString);
-        //    }
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=QUANGPHAT\\CLARKKENT;Database=MaxiCorp;User ID=sa;Password=number8;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,8 +36,6 @@ namespace Maxi.Repository
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("Employee");
 
                 entity.Property(e => e.Birthday).HasColumnType("datetime");
@@ -49,9 +46,11 @@ namespace Maxi.Repository
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
-                entity.Property(e => e.FullName).HasMaxLength(250);
+                entity.Property(e => e.Email)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.FullName).HasMaxLength(250);
 
                 entity.Property(e => e.Phone)
                     .HasMaxLength(20)
@@ -62,15 +61,18 @@ namespace Maxi.Repository
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<Level>(entity =>
+            {
+                entity.ToTable("Level");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Team>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("Team");
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name).HasMaxLength(250);
 
