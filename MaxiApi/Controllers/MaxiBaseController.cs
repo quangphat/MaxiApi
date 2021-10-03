@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-
 namespace MaxiApi.Controllers
 {
-    public abstract class MaxiBaseController
+    public abstract class MaxiBaseController:Controller
     {
         public readonly CurrentProcess _process;
         public MaxiBaseController(CurrentProcess process)
@@ -23,7 +22,7 @@ namespace MaxiApi.Controllers
         {
             var model = new ResponseJsonModel();
             bool hasError = _checkHasError(model);
-            return new JsonResult(model, _jsonSerializerSettings);
+            return Json(model, _jsonSerializerSettings);
         }
 
         protected IActionResult ToResponse(long data)
@@ -32,7 +31,7 @@ namespace MaxiApi.Controllers
             bool hasError = _checkHasError(model);
             if (!hasError)
                 model.data = data;
-            return new JsonResult(model, _jsonSerializerSettings);
+            return Json(model, _jsonSerializerSettings);
         }
 
         protected IActionResult ToResponse<T>(T data) where T : class
@@ -41,7 +40,7 @@ namespace MaxiApi.Controllers
             if (!_checkHasError(model))
                 model.data = data;
 
-            return new JsonResult(model, _jsonSerializerSettings);
+            return Json(model , _jsonSerializerSettings);
         }
         protected IActionResult ToResponse(bool isSuccess)
         {
@@ -50,7 +49,7 @@ namespace MaxiApi.Controllers
             if (!_checkHasError(model))
                 model.success = isSuccess;
 
-            return new JsonResult(model, _jsonSerializerSettings);
+            return Json(model, _jsonSerializerSettings);
         }
         private bool _checkHasError(ResponseJsonModel model)
         {

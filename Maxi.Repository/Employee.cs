@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Maxi.Repository
 {
-    public partial class Employee
+    public partial class Employee:EntityBase
     {
         public int Id { get; set; }
         public string Code { get; set; }
@@ -15,10 +15,6 @@ namespace Maxi.Repository
         public int LevelId { get; set; }
         public string Phone { get; set; }
         public int TeamId { get; set; }
-        public int LeaderId { get; set; }
-        public int? CreatedBy { get; set; }
-        public DateTime? CreatedAt { get; set; }
-        public int? UpdatedBy { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        
     }
 }

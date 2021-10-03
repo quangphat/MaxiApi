@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace MaxiApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TeamsController : MaxiBaseController
     {
         private readonly ILogger<TeamsController> _logger;
@@ -25,9 +25,16 @@ namespace MaxiApi.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Team>> Gets()
+        public async Task<IActionResult> Gets(string freeText, int page = 1, int limit = 20)
         {
-            return await _bzTeam.Gets();
+            var result=  await _bzTeam.Gets(freeText, page, limit);
+            return ToResponse(result);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await _bzTeam.GetByIdAsync(id);
+            return ToResponse(result);
         }
     }
 }

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Maxi.Models\Maxi.Models.csproj" />
     <ProjectReference Include="..\Maxi.Repository\Maxi.Repository.csproj" />
   </ItemGroup>
 

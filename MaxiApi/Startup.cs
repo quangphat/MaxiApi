@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,11 @@ namespace MaxiApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddControllers()
+               .AddNewtonsoftJson(option =>
+               {
+                   option.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+               });
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<MaxiCorpContext>(option =>
                 {
